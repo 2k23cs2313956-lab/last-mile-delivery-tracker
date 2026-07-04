@@ -1,47 +1,63 @@
-🚚 Last Mile Delivery Tracker
+# 🚚 Last Mile Delivery Tracker
 
-A full-stack MERN-based logistics tracking system that handles order creation, delivery assignment, status tracking, and delivery failure reporting with role-based access (Customer / Driver / Admin).
+A full-stack **MERN-based logistics tracking system** that handles order creation, delivery assignment, status tracking, and delivery failure reporting with role-based access (Customer / Driver / Admin).
 
-📌 Features
-🔐 JWT Authentication (Login/Register)
-👤 Role-based access control (Customer / Driver / Admin)
-📦 Order creation & tracking
-🚚 Delivery status updates (Assigned → In Transit → Delivered / Failed)
-📍 Failed delivery reporting
-📊 Rate calculation for deliveries
-🗄️ MongoDB database integration
-🌐 RESTful API backend (Express)
-🏗️ Project Structure
+---
+
+# 📌 Features
+
+- 🔐 JWT Authentication (Login/Register)
+- 👤 Role-based access control (Customer / Driver / Admin)
+- 📦 Order creation & tracking
+- 🚚 Delivery status updates (Assigned → In Transit → Delivered / Failed)
+- 📍 Failed delivery reporting
+- 📊 Rate calculation for deliveries
+- 🗄️ MongoDB database integration
+- 🌐 RESTful API backend (Express)
+
+---
+
+# 🏗️ Project Structure
+
+
 last-mile-delivery-tracker/
 │
 ├── backend/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── config/
-│   ├── server.js
-│   └── .env.example
+│ ├── controllers/
+│ ├── middleware/
+│ ├── models/
+│ ├── routes/
+│ ├── config/
+│ ├── server.js
+│ └── .env.example
 │
 ├── frontend/
-│   ├── src/
-│   ├── public/
-│   └── package.json
+│ ├── src/
+│ ├── public/
+│ └── package.json
 │
 └── README.md
-⚙️ Setup Guide
-1️⃣ Clone Repository
+
+
+---
+
+# ⚙️ Setup Guide
+
+## 1️⃣ Clone Repository
+
+```bash
 git clone https://github.com/<your-username>/last-mile-delivery-tracker.git
 cd last-mile-delivery-tracker
 2️⃣ Backend Setup
 cd backend
 npm install
-▶ Start backend server
 node server.js
-# or
+
+OR
+
 npm run dev
 
-Server runs on:
+Backend runs on:
 
 http://localhost:5000
 3️⃣ Frontend Setup
@@ -53,15 +69,12 @@ Frontend runs on:
 
 http://localhost:5173
 🔐 Environment Variables
-📄 .env.example
 
-Create a .env file in /backend:
+Create a .env file inside /backend
 
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/last_mile_db
 JWT_SECRET=your_secret_key
-
-# Optional
 NODE_ENV=development
 📡 API Documentation
 🔑 Auth Routes
@@ -80,19 +93,19 @@ Response:
   }
 }
 📦 Order Routes
-Create Order (Customer only)
+Create Order (Customer)
 POST /api/orders
 
 Headers:
 
 Authorization: Bearer <token>
-Get My Orders (Customer)
+Get My Orders
 GET /api/orders
-Update Delivery Status (Driver/Admin)
+Update Delivery Status
 PUT /api/orders/:id/status
 Mark Failed Delivery
 POST /api/orders/:id/fail
-🗄️ Database Schema (MongoDB)
+🗄️ Database Schema
 👤 User Schema
 {
   name: String,
@@ -111,7 +124,7 @@ POST /api/orders/:id/fail
   price: Number,
   createdAt: Date
 }
-🚚 Delivery Schema (optional extension)
+🚚 Delivery Schema (Optional)
 {
   orderId: ObjectId,
   statusHistory: [
@@ -122,54 +135,39 @@ POST /api/orders/:id/fail
   ]
 }
 💰 Rate Calculation Logic
-
-Delivery pricing is calculated dynamically based on:
-
-📍 Base Formula
+Formula
 Final Price = Base Rate + Distance Charge + Priority Fee
-🧮 Breakdown
-1. Base Rate
+Breakdown
+Base Rate = ₹50
+Distance Charge = ₹10 per km
 
-Fixed starting cost:
+Priority Fee:
 
-₹50
-2. Distance Charge
-₹10 per km
-
-Example:
-
-Distance = 8 km
-Charge = 8 × 10 = ₹80
-3. Priority Fee (optional)
-Priority	Extra Fee
-Normal	₹0
-Express	₹30
-Same Day	₹50
-📌 Example Calculation
+Normal = ₹0
+Express = ₹30
+Same Day = ₹50
+Example
 Base = ₹50
 Distance (12 km) = ₹120
 Priority (Express) = ₹30
 
-Final Price = 50 + 120 + 30 = ₹200
+Final Price = ₹200
 🔐 Authentication Flow
 User logs in
 Server generates JWT token
 Token stored in frontend (localStorage)
-Token sent in headers for protected routes
+Token sent in request headers
 Authorization: Bearer <token>
-🚀 Deployment Notes
+🚀 Deployment
 Backend → Render / Railway / AWS
 Frontend → Vercel / Netlify
 Database → MongoDB Atlas
-🧪 Testing API (Optional)
-
-Use:
-
+🧪 Testing Tools
 Postman
-Thunder Client (VS Code)
+Thunder Client
 📌 Future Improvements
-📍 Real-time GPS tracking
-📲 SMS/Email notifications
-📊 Admin analytics dashboard
-🗺️ Google Maps integration
-🚚 Driver mobile app
+GPS tracking
+SMS/Email notifications
+Admin analytics dashboard
+Google Maps integration
+Driver mobile app
